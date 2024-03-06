@@ -56,4 +56,13 @@ public class AppTest
         assertEquals(Integer.valueOf(1), popped);
         assertTrue(stack.isEmpty());
     }
+    public void testPopMultiple() {
+        MyStack<Integer> stack = new MyStack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        Integer popped = stack.pop();
+        assertEquals(Integer.valueOf(3), popped);
+        assertEquals(Integer.valueOf(2), stack.get(stack.size() - 1));
+    }
 }
