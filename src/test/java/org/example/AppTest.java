@@ -35,4 +35,9 @@ public class AppTest
     {
         assertTrue( true );
     }
+    public void testPush() {
+        MyStack<Integer> stack = new MyStack<>();
+        stack.push(1);
+        assertEquals(Integer.valueOf(1), stack.get(0));
+    }
 }
