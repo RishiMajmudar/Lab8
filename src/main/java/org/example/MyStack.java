@@ -32,5 +32,5 @@ public class MyStack<E> {
     public E get(int index) {
         return delegate.get(index);
     }
-
 }
+

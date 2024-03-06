@@ -69,4 +69,23 @@ public class AppTest
 //        MyStack<Integer> stack = new MyStack<>();
 //        stack.pop();
 //    }
+
+    public void testIsEmpty() {
+        MyStack<Integer> stack = new MyStack<>();
+        assertTrue(stack.isEmpty());
+        stack.push(1);
+        assertFalse(stack.isEmpty());
+        stack.pop();
+        assertTrue(stack.isEmpty());
+    }
+    public void testSize() {
+        MyStack<Integer> stack = new MyStack<>();
+        assertEquals(0, stack.size());
+        stack.push(1);
+        assertEquals(1, stack.size());
+        stack.push(2);
+        assertEquals(2, stack.size());
+        stack.pop();
+        assertEquals(1, stack.size());
+    }
 }
