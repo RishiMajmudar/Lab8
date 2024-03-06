@@ -40,4 +40,12 @@ public class AppTest
         stack.push(1);
         assertEquals(Integer.valueOf(1), stack.get(0));
     }
+    public void testPushMultiple() {
+        MyStack<Integer> stack = new MyStack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        assertEquals(Integer.valueOf(3), stack.get(stack.size() - 1));
+
+    }
 }
