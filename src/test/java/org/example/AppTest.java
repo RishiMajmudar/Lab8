@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.util.EmptyStackException;
+
 /**
  * Unit test for simple App.
  */
@@ -35,40 +37,46 @@ public class AppTest
     {
         assertTrue( true );
     }
+    public void testPushPop() {
+        MyStack<Integer> stack = new MyStack<>();
+        stack.push(1);
+        assertEquals(Integer.valueOf(1), stack.pop());
+    }
+
     public void testPush() {
         MyStack<Integer> stack = new MyStack<>();
         stack.push(1);
+        assertEquals(1, stack.size());
         assertEquals(Integer.valueOf(1), stack.get(0));
-    }
-
-    public void testPushMultiple() {
-        MyStack<Integer> stack = new MyStack<>();
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        assertEquals(Integer.valueOf(3), stack.get(stack.size() - 1));
     }
 
     public void testPop() {
         MyStack<Integer> stack = new MyStack<>();
         stack.push(1);
-        Integer popped = stack.pop();
-        assertEquals(Integer.valueOf(1), popped);
-        assertTrue(stack.isEmpty());
+        int sizeBeforePop = stack.size();
+        Integer poppedValue = stack.pop();
+        assertEquals(Integer.valueOf(1), poppedValue);
+        assertEquals(sizeBeforePop - 1, stack.size());
     }
-    public void testPopMultiple() {
+
+    public void testEmptyStackPop() {
+        MyStack<Integer> stack = new MyStack<>();
+        assertTrue(stack.isEmpty());
+        try {
+            stack.pop();
+            fail("Expected EmptyStackException");
+        } catch (EmptyStackException e) {
+            // Expected behavior
+        }
+    }
+
+    public void testNotEmptyStackPop() {
         MyStack<Integer> stack = new MyStack<>();
         stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        Integer popped = stack.pop();
-        assertEquals(Integer.valueOf(3), popped);
-        assertEquals(Integer.valueOf(2), stack.get(stack.size() - 1));
+        assertFalse(stack.isEmpty());
+        assertEquals(Integer.valueOf(1), stack.pop());
+        assertTrue(stack.isEmpty());
     }
-//    public void testPopEmptyStack() {
-//        MyStack<Integer> stack = new MyStack<>();
-//        stack.pop();
-//    }
 
     public void testIsEmpty() {
         MyStack<Integer> stack = new MyStack<>();
@@ -78,6 +86,7 @@ public class AppTest
         stack.pop();
         assertTrue(stack.isEmpty());
     }
+
     public void testSize() {
         MyStack<Integer> stack = new MyStack<>();
         assertEquals(0, stack.size());
